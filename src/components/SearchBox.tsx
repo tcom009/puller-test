@@ -1,3 +1,27 @@
-const SearchBox = () => {};
+interface SearchBoxProps {
+  query?: string;
+  setQuery: Function;
+  setGetByCategory:Function;
+}
+
+const SearchBox = (props: SearchBoxProps) => {
+  const { query, setQuery, setGetByCategory } = props;
+  const containerStyle = { display: 'flex', width: 'full' };
+
+  return (
+    <div style={containerStyle}>
+      <input
+        type='text'
+        placeholder='Search by name'
+        value={query || ''}
+        onChange={(event) => {
+          setGetByCategory(false);
+          setQuery(event.target.value);
+        }}
+        className='searchbox'
+      />
+    </div>
+  );
+};
 
 export default SearchBox;

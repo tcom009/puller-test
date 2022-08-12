@@ -6,21 +6,42 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+button {
+  background-color:white;
+  border: 0px
 }
 
-* {
-  box-sizing: border-box;
+
+.image{
+  width:200px;
+  height: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+
+.category-button{
+  background-color: aquamarine;
+  border: 0px;
+  border-radius: 30px;
+  margin:1px;
+  padding:8px;
+}
+.category-button:hover{
+  background-color: aqua;
+}
+
+.searchbox {
+  padding: 10px;
+  margin: 20px;
+  border-radius: 20px;
+  border: 1px solid gray;
+  width: 100%;
+  height: 20px;
+};
+
+.centered-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%
+  
 }
