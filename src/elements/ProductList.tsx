@@ -1,6 +1,6 @@
 import { Product } from 'models/product';
-import { useReducer } from 'react';
-import { ProductListReducer } from 'actions/productList';
+import { useReducer, useEffect } from 'react';
+import { ActionTypes, ProductListReducer } from 'actions/productList';
 import SearchBox from '@components/SearchBox';
 import { useSearchProduct } from 'hooks/useSearchProduct';
 import ProductCards from 'components/ProductCards';
@@ -17,12 +17,24 @@ const ProductList = (props: ProductListProps) => {
   const [state, dispatch] = useReducer(ProductListReducer, {
     products: products,
     categories: categories,
+    showingProducts: products,
     loading: false,
   });
   const { query, setQuery, filteredProducts } = useSearchProduct(
     state.products
   );
-
+  useEffect(() => {
+    if (query !== '') {
+      dispatch({
+        type: ActionTypes.SET_SHOWING_PRODUCTS,
+        payload: { showingProducts: filteredProducts },
+      });
+    } else {
+      dispatch({
+        type: ActionTypes.SET_SHOW_ALL_PRODUCTS,
+      });
+    }
+  }, [filteredProducts, query]);
   return (
     <>
       <div
@@ -44,11 +56,7 @@ const ProductList = (props: ProductListProps) => {
           );
         })}
       <h2>Product list</h2>
-      {query === '' ? (
-        <ProductCards products={state.products} />
-      ) : (
-        <ProductCards products={filteredProducts} />
-      )}
+      <ProductCards products={state.showingProducts} />
     </>
   );
 };
