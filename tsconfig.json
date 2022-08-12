@@ -16,6 +16,9 @@
     "incremental": true, 
     "baseUrl": "./src",
     "paths": {
+      "@hooks/*":[
+        "hooks/*"
+      ],
       "@actions/*":[
         "actions/*"
       ],

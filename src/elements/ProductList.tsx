@@ -1,13 +1,28 @@
 import { Product } from 'models/product';
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 import { ProductListReducer } from 'actions/productList';
+import SearchBox from '@components/SearchBox';
+import { useSearchProduct } from 'hooks/useSearchProduct';
 
-const ProductList = (props: any) => {
-  const { data } = props;
+interface ProductListProps {
+  data: {
+    products: Array<Product>;
+    categories: Array<string>;
+  };
+}
+const ProductList = (props: ProductListProps) => {
+  const {
+    data: { products, categories },
+  } = props;
   const [state, dispatch] = useReducer(ProductListReducer, {
-    ...data,
+    products: products,
+    categories: categories,
     loading: false,
   });
+  const { query, setQuery, filteredProducts } = useSearchProduct(
+    state.products
+  );
+
   return (
     <>
       <div
@@ -19,6 +34,7 @@ const ProductList = (props: any) => {
       >
         <h1 style={{ width: 'full' }}>Sample text</h1>
       </div>
+      <SearchBox query={query} setQuery={setQuery} />
       {state.categories &&
         state.categories.map((category: string) => {
           return (
@@ -28,14 +44,24 @@ const ProductList = (props: any) => {
           );
         })}
       <h2>Product list</h2>
-      <ul>
-        {state.products &&
-          state.products.map((product: Product) => (
-            <li key={product.id}>{product.title}</li>
-          ))}
-      </ul>
+      {filteredProducts.length !== 0 ? (
+        <List products={filteredProducts} />
+      ) : (
+        <List products={state.products} />
+      )}
     </>
   );
 };
 
 export default ProductList;
+
+const List = (props: any) => {
+  return (
+    <ul>
+      {props.products &&
+        props.products.map((product: Product) => (
+          <li key={product.id}>{product.title}</li>
+        ))}
+    </ul>
+  );
+};
