@@ -1,5 +1,7 @@
 import { Product } from '@models/product';
 import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
 interface ProductCardsProps {
   products: Array<Product>;
@@ -11,9 +13,9 @@ const ProductCards = (props: ProductCardsProps) => {
       <div>
         {products.map((product) => {
           return (
-            <>
+            <React.Fragment key={product.id}>
               <Card product={product} key={product.id} />
-            </>
+            </React.Fragment>
           );
         })}
       </div>
@@ -30,9 +32,15 @@ interface CardProps {
 const Card = (props: CardProps) => {
   const { product } = props;
   return (
-    <div style={{ display: 'flex' }}>
-      <Image src={product.image} alt={product.title} width={200} height={200} />
-      <div>{product.title}</div>
+    <div style={{ width: '300px' }}>
+      <Link href={`/product/${product.id}`}>
+        <div>
+          <img src={product.image} alt={product.title} className='image' />
+
+          <div>{product.title}</div>
+          <p>{product.category}</p>
+        </div>
+      </Link>
     </div>
   );
 };
