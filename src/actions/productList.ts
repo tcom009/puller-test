@@ -1,8 +1,8 @@
 import { Product } from 'models/product';
 
 interface StateModel {
-  products: Array<Product> | undefined;
-  categories: Array<string> | undefined;
+  products: Array<Product> ;
+  categories: Array<string> ;
   loading: boolean;
 }
 
