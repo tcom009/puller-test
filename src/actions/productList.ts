@@ -8,11 +8,12 @@ interface StateModel {
 
 export enum ActionTypes {
   SET_DATA = 'SET_DATA',
+  SET_PRODUCTS = 'SET_PRODUCTS',
 }
 
 interface Action {
   type: string;
-  payload?: StateModel;
+  payload?: any;
 }
 
 export const ProductListReducer = (state: StateModel, action: Action) => {
@@ -21,6 +22,11 @@ export const ProductListReducer = (state: StateModel, action: Action) => {
       return {
         ...state,
         categories: action.payload?.categories,
+        products: action.payload?.products,
+      };
+    case ActionTypes.SET_PRODUCTS:
+      return {
+        ...state,
         products: action.payload?.products,
       };
     default:

@@ -19,7 +19,7 @@ const SearchBox = (props: SearchBoxProps) => {
     <div style={containerStyle}>
       <input
         type='text'
-        placeholder='Search products'
+        placeholder='Search by name or category'
         value={query}
         onChange={(event) => {
           setQuery(event.target.value);

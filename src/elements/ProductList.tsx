@@ -1,9 +1,9 @@
 import { Product } from 'models/product';
-import { useReducer, useEffect } from 'react';
+import { useReducer } from 'react';
 import { ProductListReducer } from 'actions/productList';
 import SearchBox from '@components/SearchBox';
 import { useSearchProduct } from 'hooks/useSearchProduct';
-
+import ProductCards from 'components/ProductCards';
 interface ProductListProps {
   data: {
     products: Array<Product>;
@@ -44,10 +44,10 @@ const ProductList = (props: ProductListProps) => {
           );
         })}
       <h2>Product list</h2>
-      {filteredProducts.length !== 0 ? (
-        <List products={filteredProducts} />
+      {query === '' ? (
+        <ProductCards products={state.products} />
       ) : (
-        <List products={state.products} />
+        <ProductCards products={filteredProducts} />
       )}
     </>
   );
@@ -55,13 +55,3 @@ const ProductList = (props: ProductListProps) => {
 
 export default ProductList;
 
-const List = (props: any) => {
-  return (
-    <ul>
-      {props.products &&
-        props.products.map((product: Product) => (
-          <li key={product.id}>{product.title}</li>
-        ))}
-    </ul>
-  );
-};
