@@ -16,6 +16,12 @@
     "incremental": true, 
     "baseUrl": "./src",
     "paths": {
+      "@actions/*":[
+        "actions/*"
+      ],
+      "@elements/*": [
+        "elements/*"
+      ],
       "@components/*": [
         "components/*"
       ],
