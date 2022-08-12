@@ -1,35 +1,13 @@
-import config from 'config';
-import axios from 'axios';
 import { Product } from 'models/product';
-import { useEffect, useState } from 'react';
+import { useReducer } from 'react';
+import { ProductListReducer } from 'actions/productList';
 
-interface State {
-  products: Array<Product> | undefined;
-  categories: Array<string> | undefined;
-  loading: boolean;
-}
-
-const ProductList = () => {
-  const [state, setState] = useState<State>({
-    products: [],
-    categories: [],
+const ProductList = (props: any) => {
+  const { data } = props;
+  const [state, dispatch] = useReducer(ProductListReducer, {
+    ...data,
     loading: false,
   });
-  useEffect(() => {
-    const getCategories = axios.get(`${config.BASE_URL}/products/categories/`);
-    const getProducts = axios.get(`${config.BASE_URL}/products`);
-
-    Promise.all([getProducts, getCategories]).then((response) => {
-      setState({
-        categories: response[1].data,
-        products: response[0].data,
-        loading: false,
-      });
-      console.log(response[0].data);
-      console.log(response[1].data);
-    });
-  }, []);
-
   return (
     <>
       <div
@@ -49,6 +27,13 @@ const ProductList = () => {
             </>
           );
         })}
+      <h2>Product list</h2>
+      <ul>
+        {state.products &&
+          state.products.map((product: Product) => (
+            <li key={product.id}>{product.title}</li>
+          ))}
+      </ul>
     </>
   );
 };
