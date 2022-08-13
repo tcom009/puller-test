@@ -41,60 +41,63 @@ const ProductList = (props: ProductListProps) => {
       });
     }
   }, [filteredProducts, query]);
+  
+  const capitalize = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   return (
-    <>
-      <div
-        style={{
-          display: 'flex',
-          alignContent: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <h1 style={{ width: 'full' }}>Sample text</h1>
-      </div>
-      <SearchBox
-        query={query}
-        setQuery={setQuery}
-        setGetByCategory={setGetByCategory}
-      />
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignContent: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {state.categories &&
-          state.categories.map((category: string, index) => {
-            return (
-              <>
-                <button
-                  key={index}
-                  onClick={() => {
-                    setQuery(category);
-                    setGetByCategory(true);
-                  }}
-                  className='category-button'
-                >
-                  {category}
-                </button>
-              </>
-            );
-          })}
-        <button
-          onClick={() => {
-            setGetByCategory(false);
-            setQuery('');
+    <div>
+      <div className='banner'>
+        <h1 style={{ width: '100%' }}>My Store</h1>
+
+        <div style={{ width: '100%' }}>
+          <SearchBox
+            query={query}
+            setQuery={setQuery}
+            setGetByCategory={setGetByCategory}
+          />
+        </div>
+
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignContent: 'center',
+            justifyContent: 'center',
           }}
-          className='category-button'
         >
-          {'Show All'}
-        </button>
+          {state.categories &&
+            state.categories.map((category: string, index) => {
+              return (
+                <>
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setQuery(category);
+                      setGetByCategory(true);
+                    }}
+                    className='category-button'
+                  >
+                    {capitalize(category)}
+                  </button>
+                </>
+              );
+            })}
+          <button
+            onClick={() => {
+              setGetByCategory(false);
+              setQuery('');
+            }}
+            className='category-button'
+          >
+            {'Show All'}
+          </button>
+        </div>
       </div>
       <h2>Product list</h2>
       <ProductCards products={state.showingProducts} />
-    </>
+    </div>
   );
 };
 
