@@ -5,12 +5,19 @@ import Image from 'next/image';
 import { Product as ProductModel } from 'models/product';
 import Head from 'next/head';
 import BackButton from '@components/BackButton';
+import StarRatings from 'react-star-ratings';
 interface ProductProps {
   data: ProductModel;
 }
 const Product = (props: ProductProps) => {
   const {
-    data: { title, category, price, image },
+    data: {
+      title,
+      description,
+      price,
+      image,
+      rating: { rate, count },
+    },
   } = props;
 
   return (
@@ -34,11 +41,31 @@ const Product = (props: ProductProps) => {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div className='product-description'>
             <h2>{title}</h2>
-
             <div className='product-price-detail'>{`$${price}`}</div>
+            <p>{description}</p>
+            <div
+              style={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <StarRatings
+                rating={rate}
+                numberOfStars={5}
+                starRatedColor={'#24A19C'}
+                starEmptyColor={'#888888'}
+                starDimension='35px'
+                starSpacing='1px'
+              />
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              This product is rated {rate} out of {count} reviews!
+            </div>
           </div>
         </div>
       </div>
+      <div style={{ padding: '40px' }}></div>
     </>
   );
 };
