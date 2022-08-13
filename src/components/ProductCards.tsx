@@ -8,9 +8,14 @@ interface ProductCardsProps {
 }
 const ProductCards = (props: ProductCardsProps) => {
   const { products } = props;
+  const productContainer = {
+    display: 'flex',
+    width: '10%',
+    margin: '10px',
+  };
   if (products.length !== 0) {
     return (
-      <div>
+      <div className='product-container'>
         {products.map((product) => {
           return (
             <React.Fragment key={product.id}>
@@ -31,10 +36,14 @@ interface CardProps {
 
 const Card = (props: CardProps) => {
   const { product } = props;
+  const productCard = {
+    display: 'flex',
+    width: '50%',
+  };
   return (
-    <div style={{ width: '300px' }}>
+    <div className='product-card'>
       <Link href={`/product/${product.id}`}>
-        <div>
+        <div className='centered-div'>
           <img src={product.image} alt={product.title} className='image' />
 
           <div>{product.title}</div>

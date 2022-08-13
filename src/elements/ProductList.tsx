@@ -60,6 +60,7 @@ const ProductList = (props: ProductListProps) => {
       <div
         style={{
           display: 'flex',
+          flexWrap: 'wrap',
           alignContent: 'center',
           justifyContent: 'center',
         }}
