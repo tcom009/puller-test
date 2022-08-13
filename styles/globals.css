@@ -21,9 +21,9 @@ button {
   padding: 10px
 }
 .image{
-  
+  margin-top:10px;
   width:auto;
-  height: 40%;
+  height: 50%;
 }
 
 .centered-div{

@@ -57,6 +57,7 @@ const Card = (props: CardProps) => {
     <div className='product-card'>
       <div className='centered-div'>
         <img src={product.image} alt={product.title} className='image' />
+        <div style={{ marginTop: '10px' }}></div>
         <div className=' product-description-container'>
           <div className='product-title'>{product.title}</div>
           <div className='product-price'>{`$${product.price}`}</div>
