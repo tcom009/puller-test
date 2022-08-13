@@ -21,20 +21,22 @@ const Product = (props: ProductProps) => {
         </title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
-      {/* Image setion */}
-      <div className='centered-div'>
-        <div className='product-image'>
-          <BackButton size={30} />
-          <img src={image} alt={title} style={{ height: '30%' }} />
+      <div className='container flex-col'>
+        {/* Image setion */}
+        <div style={{ marginTop: '20px' }}></div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className='product-image'>
+            <BackButton size={35} />
+            <img src={image} alt={title} className='image-detail' />
+          </div>
         </div>
-      </div>
-      {/* Description section */}
-      <div className='centered-div'>
-        <div className='product-description'>
-          <h1 className='product-title-detail'>{title}</h1>
+        {/* Description section */}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className='product-description'>
+            <h2>{title}</h2>
 
-          <div className='product-price-detail'>{`$${price}`}</div>
+            <div className='product-price-detail'>{`$${price}`}</div>
+          </div>
         </div>
       </div>
     </>

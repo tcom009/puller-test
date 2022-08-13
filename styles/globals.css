@@ -40,7 +40,7 @@ button {
   border: 0px;
   border-radius: 30px;
   margin:3px;
-  padding:8px;
+  padding:12px;
   color: #FAEEE7;
   font-weight: bold;
   font-size: 19px;
@@ -122,7 +122,7 @@ justify-content: center;
   background-color: white;
   border-radius: 20px;
   border: 1px solid gray; 
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   width: 80%;
   padding: 3%
@@ -144,7 +144,11 @@ justify-content: center;
 .product-price-detail{
   text-align: right ;
   width: 100%;
-  font-weight: 450;
+  
+  font-size: 27px;
+  margin-right: 20%;
+  font-weight: 700;
+  color:#325288
 }
 
 
@@ -163,7 +167,9 @@ justify-content: center;
 }
 
 
-
+.image-detail{
+width:400px
+}
 
 @media only screen and (max-width:1000px){
 
@@ -236,3 +242,14 @@ justify-content: center;
   height:300px
  }
 }
+
+@media only screen and (max-width:600px){
+
+  
+  
+   .image-detail{
+    width:200px;
+    height:auto
+   }
+  
+  }
