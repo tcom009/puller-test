@@ -1,11 +1,11 @@
 interface SearchBoxProps {
   query?: string;
   setQuery: Function;
-  setGetByCategory:Function;
+  
 }
 
 const SearchBox = (props: SearchBoxProps) => {
-  const { query, setQuery, setGetByCategory } = props;
+  const { query, setQuery } = props;
   const containerStyle = { display: 'flex', width: 'full' };
 
   return (
@@ -15,7 +15,6 @@ const SearchBox = (props: SearchBoxProps) => {
         placeholder='Search by name'
         value={query || ''}
         onChange={(event) => {
-          setGetByCategory(false);
           setQuery(event.target.value);
         }}
         className='searchbox'

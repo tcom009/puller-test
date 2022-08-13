@@ -10,6 +10,7 @@ interface StateModel {
 export enum ActionTypes {
   SET_SHOW_ALL_PRODUCTS = 'SET_SHOW_ALL_PRODUCTS',
   SET_SHOWING_PRODUCTS = 'SET_SHOWING_PRODUCTS',
+  SET_LOADING = 'SET_LOADING',
 }
   
 
@@ -29,6 +30,11 @@ export const ProductListReducer = (state: StateModel, action: Action) => {
       return {
         ...state,
         showingProducts: action.payload?.showingProducts,
+      };
+    case ActionTypes.SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload?.loading,
       };
     default:
       console.debug(action);
