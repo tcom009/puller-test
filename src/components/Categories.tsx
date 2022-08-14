@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface CategoriesProps {
   categories: Array<string>;
   getByCategory: Function;
@@ -13,7 +15,7 @@ const Categories = (props: CategoriesProps) => {
       {categories &&
         categories.map((category: string, index) => {
           return (
-            <>
+            <React.Fragment key={index}>
               <button
                 key={index}
                 onClick={() => {
@@ -23,7 +25,7 @@ const Categories = (props: CategoriesProps) => {
               >
                 {capitalize(category)}
               </button>
-            </>
+            </React.Fragment>
           );
         })}
     </>
