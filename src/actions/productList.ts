@@ -10,8 +10,8 @@ interface StateModel {
 export enum ActionTypes {
   SET_SHOW_ALL_PRODUCTS = 'SET_SHOW_ALL_PRODUCTS',
   SET_SHOWING_PRODUCTS = 'SET_SHOWING_PRODUCTS',
+  SET_PRODUCTS = 'SET_PRODUCTS',
 }
-  
 
 interface Action {
   type: string;
@@ -29,6 +29,11 @@ export const ProductListReducer = (state: StateModel, action: Action) => {
       return {
         ...state,
         showingProducts: action.payload?.showingProducts,
+      };
+    case ActionTypes.SET_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload?.products,
       };
     default:
       console.debug(action);

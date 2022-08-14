@@ -1,16 +1,16 @@
+import { useRouter } from 'next/router';
 import { Product } from '@models/product';
-import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
-
+import NoProducts from 'components/NoProducts';
 interface ProductCardsProps {
   products: Array<Product>;
 }
 const ProductCards = (props: ProductCardsProps) => {
   const { products } = props;
+
   if (products.length !== 0) {
     return (
-      <div>
+      <div className='product-container'>
         {products.map((product) => {
           return (
             <React.Fragment key={product.id}>
@@ -21,7 +21,7 @@ const ProductCards = (props: ProductCardsProps) => {
       </div>
     );
   } else {
-    return <div>Sorry there are not products matching</div>;
+    return <NoProducts />;
   }
 };
 
@@ -31,16 +31,26 @@ interface CardProps {
 
 const Card = (props: CardProps) => {
   const { product } = props;
-  return (
-    <div style={{ width: '300px' }}>
-      <Link href={`/product/${product.id}`}>
-        <div>
-          <img src={product.image} alt={product.title} className='image' />
 
-          <div>{product.title}</div>
-          <p>{product.category}</p>
+  const router = useRouter();
+  return (
+    <div className='product-card'>
+      <div className='centered-div'>
+        <img src={product.image} alt={product.title} className='image' />
+        <div style={{ marginTop: '10px' }}></div>
+        <div className=' product-description-container'>
+          <div className='product-title'>{product.title}</div>
+          <div className='product-price'>{`$${product.price}`}</div>
         </div>
-      </Link>
+        <div style={{ margin: '3px' }}>
+          <button
+            className='see-details-button'
+            onClick={() => router.push(`/product/${product.id}`)}
+          >
+            See details
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
