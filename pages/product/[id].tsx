@@ -7,6 +7,7 @@ import Head from 'next/head';
 import BackButton from '@components/BackButton';
 import StarRatings from 'react-star-ratings';
 import { useRouter } from 'next/router';
+import { capitalize } from 'components/Categories';
 interface ProductProps {
   data: { product: ProductModel; categories: Array<string> };
 }
@@ -19,6 +20,7 @@ const Product = (props: ProductProps) => {
         description,
         price,
         image,
+        category,
         rating: { rate, count },
       },
       categories,
@@ -68,6 +70,9 @@ const Product = (props: ProductProps) => {
             </div>
             <div style={{ textAlign: 'right' }}>
               This product is rated {rate} out of {count} reviews!
+            </div>
+            <div style={{ marginTop: '20px' }}>
+              Found in category: {capitalize(category)}
             </div>
             <div
               style={{

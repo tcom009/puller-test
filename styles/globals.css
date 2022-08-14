@@ -114,6 +114,13 @@ justify-content: center;
   font-weight: 700;
   color:#325288
 }
+.product-category{
+  margin-top: 10px;
+  text-align: left !important;
+  width: 100%;
+  margin-left: 20%;
+ 
+}
 
 .product-image {
   display:flex; 
@@ -198,6 +205,16 @@ width:400px
   margin-top:5px;
   
 }
+
+.product-category{
+  margin-top: 10px;
+  text-align: left !important;
+  width: 100%;
+  margin-left: 20%;
+  font-size: 12px;
+}
+
+
 .see-details-button{
  font-size:15px
 }
@@ -241,12 +258,15 @@ width:400px
  .centered-div{
   height:300px
  }
+ .product-category{
+  font-size:12px;
+}
 }
 
 @media only screen and (max-width:600px){
 
   
-  
+ 
    .image-detail{
     width:200px;
     height:auto

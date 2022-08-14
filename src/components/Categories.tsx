@@ -3,11 +3,11 @@ interface CategoriesProps {
   getByCategory: Function;
 }
 
+export const capitalize = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
 const Categories = (props: CategoriesProps) => {
   const { categories, getByCategory } = props;
-  const capitalize = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
   return (
     <>
       {categories &&

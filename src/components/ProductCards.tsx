@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { Product } from '@models/product';
 import React from 'react';
 import NoProducts from 'components/NoProducts';
+import { capitalize } from 'components/Categories';
 interface ProductCardsProps {
   products: Array<Product>;
 }
@@ -41,6 +42,9 @@ const Card = (props: CardProps) => {
         <div className=' product-description-container'>
           <div className='product-title'>{product.title}</div>
           <div className='product-price'>{`$${product.price}`}</div>
+        </div>
+        <div className='product-category'>
+          Category: {capitalize(product.category)}
         </div>
         <div style={{ margin: '3px' }}>
           <button
