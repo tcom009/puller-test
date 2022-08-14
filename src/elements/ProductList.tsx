@@ -49,6 +49,7 @@ const ProductList = (props: ProductListProps) => {
       .get(`${config.BASE_URL}/products/category/${category}`)
       .then((response) => {
         console.log(response.data);
+        setQuery('');
         dispatch({
           type: ActionTypes.SET_SHOWING_PRODUCTS,
           payload: {
@@ -74,6 +75,9 @@ const ProductList = (props: ProductListProps) => {
         <h1
           style={{
             width: '100%',
+            marginLeft: '20px',
+            fontSize: '50px',
+            fontWeight: '800',
           }}
         >
           My Store

@@ -1,49 +1,29 @@
 import { useRouter } from 'next/router';
 import { Product } from '@models/product';
 import React from 'react';
-
+import NoProducts from 'components/NoProducts';
 interface ProductCardsProps {
   products: Array<Product>;
 }
 const ProductCards = (props: ProductCardsProps) => {
-                                                     const { products } = props;
+  const { products } = props;
 
-                                                     if (
-                                                       products.length !== 0
-                                                     ) {
-                                                       return (
-                                                         <div className='product-container'>
-                                                           {products.map(
-                                                             (product) => {
-                                                               return (
-                                                                 <React.Fragment
-                                                                   key={
-                                                                     product.id
-                                                                   }
-                                                                 >
-                                                                   <Card
-                                                                     product={
-                                                                       product
-                                                                     }
-                                                                     key={
-                                                                       product.id
-                                                                     }
-                                                                   />
-                                                                 </React.Fragment>
-                                                               );
-                                                             }
-                                                           )}
-                                                         </div>
-                                                       );
-                                                     } else {
-                                                       return (
-                                                         <div>
-                                                           Sorry there are not
-                                                           products matching
-                                                         </div>
-                                                       );
-                                                     }
-                                                   };
+  if (products.length !== 0) {
+    return (
+      <div className='product-container'>
+        {products.map((product) => {
+          return (
+            <React.Fragment key={product.id}>
+              <Card product={product} key={product.id} />
+            </React.Fragment>
+          );
+        })}
+      </div>
+    );
+  } else {
+    return <NoProducts />;
+  }
+};
 
 interface CardProps {
   product: Product;
