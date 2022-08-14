@@ -65,7 +65,21 @@ const ProductList = (props: ProductListProps) => {
   };
 
   const getAllProducts = () => {
-    router.push('/');
+    axios.get(`${config.BASE_URL}/products`).then((response) => {
+      setQuery('');
+      dispatch({
+        type: ActionTypes.SET_SHOWING_PRODUCTS,
+        payload: {
+          showingProducts: response.data,
+        },
+      });
+      dispatch({
+        type: ActionTypes.SET_PRODUCTS,
+        payload: {
+          products: response.data,
+        },
+      });
+    });
   };
 
   return (
