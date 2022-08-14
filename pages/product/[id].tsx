@@ -6,10 +6,12 @@ import { Product as ProductModel } from 'models/product';
 import Head from 'next/head';
 import BackButton from '@components/BackButton';
 import StarRatings from 'react-star-ratings';
+import { useRouter } from 'next/router';
 interface ProductProps {
   data: { product: ProductModel; categories: Array<string> };
 }
 const Product = (props: ProductProps) => {
+  const router = useRouter();
   const {
     data: {
       product: {
@@ -22,7 +24,9 @@ const Product = (props: ProductProps) => {
       categories,
     },
   } = props;
-
+  const getByCategory = (category: string) => {
+    router.push(`/category/${category}`);
+  };
   return (
     <>
       <Head>
@@ -67,6 +71,7 @@ const Product = (props: ProductProps) => {
             </div>
             <div
               style={{
+                marginTop: '10px',
                 display: 'flex',
                 flexWrap: 'wrap',
                 alignContent: 'center',
@@ -75,9 +80,7 @@ const Product = (props: ProductProps) => {
             >
               <Categories
                 categories={categories}
-                getByCategory={() => {
-                  console.log('s');
-                }}
+                getByCategory={getByCategory}
               />
             </div>
           </div>
