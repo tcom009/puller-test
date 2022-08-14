@@ -1,22 +1,25 @@
 import get from 'lodash/get';
 import axios from 'axios';
 import config from '@config';
-import Image from 'next/image';
+import Categories from '@components/Categories';
 import { Product as ProductModel } from 'models/product';
 import Head from 'next/head';
 import BackButton from '@components/BackButton';
 import StarRatings from 'react-star-ratings';
 interface ProductProps {
-  data: ProductModel;
+  data: { product: ProductModel; categories: Array<string> };
 }
 const Product = (props: ProductProps) => {
   const {
     data: {
-      title,
-      description,
-      price,
-      image,
-      rating: { rate, count },
+      product: {
+        title,
+        description,
+        price,
+        image,
+        rating: { rate, count },
+      },
+      categories,
     },
   } = props;
 
@@ -62,6 +65,21 @@ const Product = (props: ProductProps) => {
             <div style={{ textAlign: 'right' }}>
               This product is rated {rate} out of {count} reviews!
             </div>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignContent: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Categories
+                categories={categories}
+                getByCategory={() => {
+                  console.log('s');
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -74,10 +92,16 @@ export default Product;
 
 export const getServerSideProps = async (context: any) => {
   const productId = get(context, 'query.id', '');
-  const response = await axios.get(`${config.BASE_URL}/products/${productId}`);
+  const getCategories = await axios.get(
+    `${config.BASE_URL}/products/categories/`
+  );
+  const getProduct = await axios.get(
+    `${config.BASE_URL}/products/${productId}`
+  );
+  console.debug(getProduct.data);
   return {
     props: {
-      data: response?.data || {},
+      data: { product: getProduct?.data, categories: getCategories?.data },
     },
   };
 };

@@ -6,6 +6,7 @@ import SearchBox from '@components/SearchBox';
 import { useSearchProduct } from 'hooks/useSearchProduct';
 import ProductCards from 'components/ProductCards';
 import config from 'config';
+import Categories from '@components/Categories';
 interface ProductListProps {
   data: {
     products: Array<Product>;
@@ -107,22 +108,7 @@ const ProductList = (props: ProductListProps) => {
             justifyContent: 'center',
           }}
         >
-          {state.categories &&
-            state.categories.map((category: string, index) => {
-              return (
-                <>
-                  <button
-                    key={index}
-                    onClick={() => {
-                      getByCategory(category);
-                    }}
-                    className='category-button'
-                  >
-                    {capitalize(category)}
-                  </button>
-                </>
-              );
-            })}
+          <Categories categories={categories} getByCategory={getByCategory} />
           <button
             onClick={() => {
               getAllProducts();
