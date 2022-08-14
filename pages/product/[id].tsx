@@ -106,10 +106,13 @@ export const getServerSideProps = async (context: any) => {
   const getProduct = await axios.get(
     `${config.BASE_URL}/products/${productId}`
   );
-  console.debug(getProduct.data);
+
   return {
     props: {
-      data: { product: getProduct?.data, categories: getCategories?.data },
+      data: {
+        product: getProduct?.data,
+        categories: getCategories?.data,
+      },
     },
   };
 };
