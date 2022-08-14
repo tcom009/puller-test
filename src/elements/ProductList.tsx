@@ -48,7 +48,6 @@ const ProductList = (props: ProductListProps) => {
     axios
       .get(`${config.BASE_URL}/products/category/${category}`)
       .then((response) => {
-        console.log(response.data);
         setQuery('');
         dispatch({
           type: ActionTypes.SET_SHOWING_PRODUCTS,
